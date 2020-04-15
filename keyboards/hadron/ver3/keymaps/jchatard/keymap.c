@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    BP_DLR,             BP_DQOT,    BP_LGIL,    BP_RGIL, BP_LPRN, BP_RPRN,       BP_AT,   BP_PLUS,  BP_MINUS, BP_SLASH, BP_ASTR, BP_EQL, \
    KC_TAB,             BP_B,       BP_E_ACUTE, BP_P,    BP_O,    BP_E_GRAVE,    BP_DCRC, BP_V,     BP_D,     BP_L,     BP_J,    BP_Z,     BP_W,                BP_PERC,             KC_DEL, \
    LGUI(BP_I),         BP_A,       BP_U,       BP_I,    BP_E,    BP_COMMA,      BP_C,    BP_T,     BP_S,     BP_R,     BP_N,    BP_M,     BP_C_CEDILLA,        KC_MEDIA_NEXT_TRACK, KC__VOLUP , \
-   LT(_MOVE, BP_ECRC),    BP_A_GRAVE, BP_Y,       BP_X,    BP_DOT,  BP_K,          BP_APOS, BP_Q,     BP_G,     BP_H,     BP_F,    TERM_KEY, KC_MEDIA_PLAY_PAUSE, KC_UP,               KC__VOLDOWN, \
+   LT(_MOVE, BP_ECRC), BP_A_GRAVE, BP_Y,       BP_X,    BP_DOT,  BP_K,          BP_APOS, BP_Q,     BP_G,     BP_H,     BP_F,    TERM_KEY, KC_MEDIA_PLAY_PAUSE, KC_UP,               KC__VOLDOWN, \
    FN,                 KC_LCTL,    KC_LGUI,    KC_LALT, KC_LSFT, KC_ENT,        KC_SPC,  KC_BSPC,  KC_RALT,  LOWER,    RAISE,   KC_DEL,   KC_LEFT,             KC_DOWN,             KC_RGHT \
 ),
 
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * | Undo | Cut  | Copy | Paste|      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      | _    |      |      |      |      |      |      |      |      |
  * `--------------------------------------------------------------------------------------------------------'
  */
 [_FN] = LAYOUT(
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_F11, KC_F12, _______, _______, _______, _______, _______, _______, _______, _______, _______,   KC_P7,   KC_P8,    KC_P9, \
   KC_ESC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_P4,   KC_P5,    KC_P6, \
   C(BP_Z), C(BP_X), C(BP_C), C(BP_V), _______, _______, _______, _______, _______, _______, _______, _______, KC_P1,   KC_P2,    KC_P3, \
-  KC_TRNS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_P0,   KC_PCMM,  KC_KP_EQUAL
+  KC_TRNS, _______, _______, _______, _______, BP_UNDERSCORE, _______, _______, _______, _______, _______, _______, KC_P0,   KC_PCMM,  KC_KP_EQUAL
 ),
 
 /* Move layer
@@ -154,24 +154,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 /* Adjust (Lower + Raise)
- * ,------+------+--------+------------+--------------+------------------------------------------------.
- * |  Esc |   1  |   2    |   3        |   4          |   5  |   6  |   7  |   8  |   9  |   0  |   -  |
- * |------+------+--------+------------+--------------+------+------+------+------+------+------+------+---------------------.
- * | Reset|RGB TG|RGB ST  |RGBH -      |RGBH +        |RGBS -|RGBS +|RGBV -|RGBV +|      |      |      |KC_NLCK|      |  Del |
- * |------+------+--------+------------+--------------+------+------+------+------+------+------+------+-------+------+------|
- * | Bépo |      |        |Aud on      |Audoff        |AGnorm|      |      |      |AGswap|Beop  |      |       |      |      |
- * |------+------+--------+------------+--------------+------+------+------+------+------+------+------+-------+------+------|
- * |      |Voice-|Voice+  |Mus on      |Musoff        |      |      |      |      |      |      |      | BL +  |BL ST |BL TG |
- * |------+------+--------+------------+--------------+------+------+------+------+------+------+------+-------+------+------|
- * |      |      | AG_TOGG|MAGIC_NO_GUI|MAGIC_UNNO_GUI|      |      |      |      |      |      |      |       |      |      |
- * `-------------------------------------------------------------------------------------------------------------------------'
+ * ,------+------+--------+------------+--------------+----------------------------------------------------.
+ * |  Esc |   1  |   2    |   3        |   4          |   5  |   6   |   7  |   8  |   9    |   0   |   -  |
+ * |------+------+--------+------------+--------------+------+-------+------+------+--------+-------+------+---------------------.
+ * | Reset|RGB TG|RGB ST  |RGBH -      |RGBH +        |RGBS -|RGBS + |RGBV -|RGBV +|        |       |      |KC_NLCK|      |  Del |
+ * |------+------+--------+------------+--------------+------+-------+------+------+--------+-------+------+-------+------+------|
+ * | Bépo |      |        |Aud on      |Audoff        |AGnorm|       |      |      |AGswap  |Beop   |      |       |      |      |
+ * |------+------+--------+------------+--------------+------+-------+------+------+--------+-------+------+-------+------+------|
+ * |      |Voice-|Voice+  |Mus on      |Musoff        | Micon |Micoff|      |      |RAG_NRM |RAG_SWP|  BL -| BL +  |BL ST |BL TG |
+ * |------+------+--------+------------+--------------+------+-------+------+------+--------+-------+------+-------+------+------|
+ * |      |      | AG_TOGG|MAGIC_NO_GUI|MAGIC_UNNO_GUI|      |       |      |      |        |       |      |       |      |      |
+ * `-----------------------------------------------------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT(
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-  RESET,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______, KC_NLCK, _______, KC_DEL, \
-  TO(_BEPO), _______, _______, AU_ON,   AU_OFF,  AG_NORM, _______, _______, _______, AG_SWAP, BEPO,  _______, _______,  _______,  _______, \
-  _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF, _______, _______, _______,  _______, BL_DEC,  BL_INC,  BL_STEP, BL_TOGG, \
-  _______, _______, AG_TOGG, MAGIC_NO_GUI, MAGIC_UNNO_GUI, _______, _______, _______, _______, _______, _______, CK_RST,  CK_DOWN, CK_UP,   CK_TOGG\
+  KC_F1,     KC_F2,   KC_F3,   KC_F4,        KC_F5,          KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
+  RESET,     RGB_TOG, RGB_MOD, RGB_HUI,      RGB_HUD,        RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______, KC_NLCK, _______, KC_DEL, \
+  TO(_BEPO), _______, _______, AU_ON,        AU_OFF,         AG_NORM, _______, _______, _______, AG_SWAP, BEPO,    _______, _______, _______, _______, \
+  _______,   MUV_DE,  MUV_IN,  MU_ON,        MU_OFF,         MI_ON,   MI_OFF,  _______, _______, RAG_NRM, RAG_SWP, BL_DEC,  BL_INC,  BL_STEP, BL_TOGG, \
+  _______,   _______, AG_TOGG, MAGIC_NO_GUI, MAGIC_UNNO_GUI, _______, _______, _______, _______, _______, _______, CK_RST,  CK_DOWN, CK_UP,   CK_TOGG\
 )
 
 
@@ -184,6 +184,9 @@ uint32_t layer_state_set_user(uint32_t state) {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  #ifdef CONSOLE_ENABLE
+    uprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
+  #endif
   switch (keycode) {
     case BEPO:
       if (record->event.pressed) {
